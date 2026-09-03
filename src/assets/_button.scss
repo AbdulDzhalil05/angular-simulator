@@ -1,0 +1,22 @@
+.button {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  color: #fff;
+  background-color: rgba(26, 62, 62, 1);
+  padding: 16px 0;
+  border: none;
+  border-radius: 4px;
+  transition: transform 0.1s;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  background: gray;
+  color: #aaa;
+  cursor: not-allowed;
+}
