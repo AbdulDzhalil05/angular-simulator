@@ -1,52 +1,147 @@
+@if (isLoaded) {
+<div class="background">
+</div>
 <header class="header">
   <div class="header__container">
-    <div class="header__logo">
-      <img src="/icons/logo.svg" alt="Logo">
-      <span>{{ companyName }}</span>
+    <div class="header__top">
+      <div class="header__logo">
+        <img src="/icons/logo.svg" alt="Logo">
+        <span>{{ companyName }}</span>
+      </div>
+
+      <nav class="header__navigation">
+        <ul class="header__list">
+          <li><a>Главная</a></li>
+          <li><a>Про гида</a></li>
+          <li><a>Программа тура</a></li>
+          <li><a>Стоимость</a></li>
+          <li><a>Блог</a></li>
+          <li><a>Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <a class="header__button" href="">Консультация</a>
+      </div>
+    </div>
+    <div class="header__bottom">
+      @if (hasShowDate) {
+      <span>{{date}}</span>
+      } @else {
+      <div class="header__widget">
+        <button [disabled]="count === 0" (click)="decrementCount()">-</button>
+        <span class="header__count">{{count}}</span>
+        <button (click)="incrementCount()">+</button>
+      </div>
+      }
+      <button class="header__widget-button" (click)="replaceButton()">{{buttonName}}</button>
     </div>
 
-    <nav class="header__navigation">
-      <ul class="header__list">
-        <li><a>Главная</a></li>
-        <li><a>Про гида</a></li>
-        <li><a>Программа тура</a></li>
-        <li><a>Стоимость</a></li>
-        <li><a>Блог</a></li>
-        <li><a>Контакты</a></li>
-      </ul>
-    </nav>
-
-    <div>
-      <a class="header__button" href="">Консультация</a>
-    </div>
   </div>
 </header>
 
 <main>
+
   <section class="hero">
     <div class="hero__container">
       <h1 class="hero__title">Насладись прогулкой в горах <br> с командой единомышленников</h1>
       <form class="hero__search-form search-form" action="">
         <div class="search-form__field">
-          <select name="location" id="location">
-            <option value="" selected disabled hidden>Локация для тура</option>
+          <select name="location" id="location" [(ngModel)]="selectedLocation">
+            <option value="" disabled hidden>Локация для тура</option>
+            @for (tourLocation of tourLocations; track tourLocation.id) {
+            <option [value]="tourLocation.id">{{tourLocation.locationName}}</option>
+            }
           </select>
           <label for="location">выберите из списка</label>
         </div>
         <div class="search-form__field">
-          <select class="formkit-date" name="hikeDate" id="hikeDate">
-            <option value="" selected disabled hidden>Дата похода</option>
-          </select>
+          <input [style.color]="selectedDate ? '#fff' : 'transparent'" class="formkit-date" name="hikeDate"
+            id="hikeDate" type="date" placeholder="Дата похода" [(ngModel)]="selectedDate">
+          @if (!selectedDate) {
+          <span class="search-form__placeholder">Дата похода</span>
+          }
           <label for="hikeDate">укажите дату</label>
         </div>
         <div class="search-form__field">
-          <select name="participants" id="participants">
-            <option value="" selected disabled hidden>Участники</option>
+          <select name="participants" id="participants" [(ngModel)]="selectedParticipants">
+            <option value="" disabled hidden>Участники</option>
+            <option value="1">1 участник</option>
+            <option value="2">2 участника</option>
+            <option value="3">3 участника</option>
           </select>
           <label for="participants">выберите из списка</label>
         </div>
-        <button class="search-form__button" type="submit">Найти программу</button>
+        <button class="search-form__button button" type="submit"
+          [disabled]="!selectedLocation || !selectedDate || !selectedParticipants">Найти программу</button>
       </form>
+      <input class="hero__input" type="text" [(ngModel)]="inputValue">
+      <span>{{inputValue}}</span>
+    </div>
+  </section>
+
+  <section class="hike-info">
+    <div class="hike-info__container">
+      <div class="hike-info__gallery">
+        <div class="hike-info__video-card-mountain-cabin">
+          <img class="hike-info__mountain-cabin" src="/images/mountain_cabin.png" alt="" width="350">
+          <button class="hike-info__play-button-mountain-cabin">
+            <img src="/icons/play-button.svg" alt="">
+          </button>
+        </div>
+        <div class="hike-info__video-card-mountain-peak">
+          <img class="hike-info__mountain-peak" src="/images/mountains_peak.png" alt="" width="350">
+          <button class="hike-info__play-button-mountain-peak">
+            <img src="/icons/play-button.svg" alt="">
+          </button>
+        </div>
+      </div>
+      <div class="hike-info__content">
+        <p class="hike-info__eyebrow">о нашем походе</p>
+        <h2 class="hike-info__title">Исследуйте все горные массивы мира вместе с нами</h2>
+        <p class="hike-info__description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть
+          более двух тысячелетий назад.
+          Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных
+          слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+        <a class="hike-info__button button" href="#tour-program">Программа тура</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="tour-program" class="tour-program">
+    <div class="tour-program__container">
+      <div class="tour-program__content">
+        <div class="tour-program__container-title">
+          <p class="tour-program__eyebrow">наше предложение</p>
+          <h2 class="tour-program__title">Лучшие программы для тебя</h2>
+        </div>
+        <p class="tour-program__description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то
+          есть
+          более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+        <div class="tour-program__advantages advantages">
+          @for(tourProgram of tourPrograms; track tourProgram.id) {
+          <div class="advantages__item">
+            <img class="advantages__icon  " [src]="tourProgram.src" alt="">
+            <div class="advantages__content">
+              <h3 class="advantages__title">{{tourProgram.title}}</h3>
+              <p class="advantages__description">{{tourProgram.description}}</p>
+            </div>
+          </div>
+          }
+        </div>
+        <a class="tour-program__button" href="">Стоимость программ</a>
+      </div>
+      <div class="tour-program__gallery">
+        <img class="tour-program__image" src="/images/mountain-drink.png" alt="" width="250">
+        <img class="tour-program__image" src="/images/mountain-hiker.png" alt="" width="250">
+        <img class="tour-program__image" src="/images/snowmobile-adventure.png" alt="" width="250">
+        <img class="tour-program__image" src="/images/alpine-meadow-river.png" alt="" width="250">
+      </div>
     </div>
   </section>
 </main>
+} @else {
+<div class="loader">
+  <img src="/icons/loading.svg" alt="Loader">
+</div>
+}
