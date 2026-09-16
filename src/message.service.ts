@@ -6,7 +6,11 @@ import { Message } from './enums/Message';
   providedIn: 'root',
 })
 export class MessageService {
-  messages: IMessage[] = [];
+  private _messages: IMessage[] = [];
+
+  get messages(): IMessage[] {
+    return this._messages;
+  }
 
   addMessage(type: Message, text: string): void {
 
@@ -19,7 +23,7 @@ export class MessageService {
       isVisible: false
     };
 
-    this.messages.unshift(message);
+    this._messages.unshift(message);
 
     setTimeout(() => {
       message.isVisible = true;
@@ -31,6 +35,6 @@ export class MessageService {
   }
 
   closeMessage(id: number): void {
-    this.messages = this.messages.filter(message => message.id !== id);
+    this._messages = this._messages.filter(message => message.id !== id);
   }
 }
