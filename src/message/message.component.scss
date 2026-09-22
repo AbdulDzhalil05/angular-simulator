@@ -1,0 +1,26 @@
+.message {
+  display: flex;
+  background-color: rgba(128, 128, 128, 0.9);
+  border-radius: 10px;
+  border: 1px;
+  border-color: rgba(255, 255, 255, 1);
+  padding: 15px;
+  gap: 15px;
+  transform: translateY(-200px);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.message.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+}

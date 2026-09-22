@@ -1,0 +1,179 @@
+.footer {
+  background-color: rgba(26, 62, 62, 1);
+  padding: 98px 0 0 0;
+  color: #fff;
+
+  &__container {
+    width: 1180px;
+    margin: 0 auto;
+  }
+
+  &__form {
+    margin: -196px 0 80px 0;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__col {
+    a {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #fff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        position: relative;
+        padding: 0 0 16px 18px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          background: url('/icons/arrow.svg') 2px center / 5.87px 10px no-repeat;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+
+  .col-about-company {
+    width: 480px;
+    padding: 0 24px 0 0;
+  }
+
+  .col-services {
+    width: 280px;
+  }
+
+  .col-important {
+    width: 280px;
+  }
+
+  &__col-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+  }
+
+  &__col-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 80px;
+  }
+
+  &__col-contacts {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  &__col-socials {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 80px;
+  }
+
+  &__bottom {
+    background: rgba(24, 18, 30, 1);
+  }
+
+  &__bottom-container {
+    width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  &__policy {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+.form {
+  background-color: rgba(253, 253, 253, 1);
+  box-shadow: 0px 0px 15px 0px rgba(24, 18, 30, 0.12);
+  border-radius: 6px;
+  padding: 40px 100px;
+  display: flex;
+  justify-content: space-between;
+  gap: 64px;
+
+  &__title-container {
+    flex: 1 1 0;
+  }
+
+  &__eyebrow {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 120%;
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 536px;
+  }
+
+  &__input-label {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  &__input-button-container {
+    display: flex;
+    gap: 16px;
+  }
+
+  &__input {
+    font-size: 14px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 12px 16px;
+    flex: 1;
+  }
+
+  &__button {
+    padding: 12px 24px;
+  }
+
+  &__text {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(24, 18, 30, 1);
+
+    a {
+      color: rgba(24, 18, 30, 1);
+      text-decoration: underline;
+    }
+  }
+}

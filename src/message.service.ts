@@ -6,13 +6,34 @@ import { Message } from './enums/Message';
   providedIn: 'root',
 })
 export class MessageService {
+
   private _messages: IMessage[] = [];
 
   get messages(): IMessage[] {
     return this._messages;
   }
 
-  addMessage(type: Message, text: string): void {
+  showSuccess() {
+    this.addMessage(Message.success, 'Данные успешно сохранены!');
+  }
+
+  showError() {
+    this.addMessage(Message.error, 'Не удалось сохранить данные.');
+  }
+
+  showWarn() {
+    this.addMessage(Message.warn, 'Проверьте введённые данные.');
+  }
+
+  showInfo() {
+    this.addMessage(Message.info, 'У вас есть новые уведомления.');
+  }
+
+  closeMessage(id: number): void {
+    this._messages = this._messages.filter(message => message.id !== id);
+  }
+
+  private addMessage(type: Message, text: string): void {
 
     const id = Date.now();
 
@@ -34,7 +55,4 @@ export class MessageService {
     }, 5000);
   }
 
-  closeMessage(id: number): void {
-    this._messages = this._messages.filter(message => message.id !== id);
-  }
 }
