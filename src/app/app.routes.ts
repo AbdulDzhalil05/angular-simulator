@@ -6,9 +6,8 @@ import { FooterComponent } from '../footer/footer.component';
 import { NotFoundPageComponent } from '../not-found-page/not-found-page.component';
 
 export const routes: Routes = [
+  { path: '', component: HomePageComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'header', component: HeaderComponent },
   { path: 'users', component: UsersPageComponent },
-  { path: 'footer', component: FooterComponent },
   { path: '**', component: NotFoundPageComponent }
 ];
