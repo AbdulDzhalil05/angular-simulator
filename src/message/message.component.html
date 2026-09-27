@@ -1,0 +1,16 @@
+<ng-template #messageTemplate let-messagelocalvar>
+  <div [class.active]="messagelocalvar.isVisible" class="message">
+    <img src="/icons/message.svg" alt="">
+    <div class="message_context">
+      <h4 class="message__title">{{messagelocalvar.type}}</h4>
+      <p class="message__text">{{messagelocalvar.text}}</p>
+    </div>
+    <img (click)="message.closeMessage(messagelocalvar.id)" src="/icons/close-button.svg" alt="">
+  </div>
+</ng-template>
+
+<div class="messages">
+  @for(_message of message.messages; track _message.id) {
+  <ng-container [ngTemplateOutlet]="messageTemplate" [ngTemplateOutletContext]="{ $implicit: _message }"></ng-container>
+  }
+</div>

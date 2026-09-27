@@ -1,0 +1,180 @@
+<main>
+
+  <section class="hero">
+    <div class="hero__container">
+      <h1 class="hero__title">Насладись прогулкой в горах <br> с командой единомышленников</h1>
+      <form class="hero__search-form search-form" action="">
+        <div class="search-form__field">
+          <select name="location" id="location" [(ngModel)]="selectedLocation">
+            <option value="" disabled hidden>Локация для тура</option>
+            @for (tourLocation of tourLocations; track tourLocation.id) {
+            <option [value]="tourLocation.id">{{tourLocation.locationName}}</option>
+            }
+          </select>
+          <label for="location">выберите из списка</label>
+        </div>
+        <div class="search-form__field">
+          <input [style.color]="selectedDate ? '#fff' : 'transparent'" class="formkit-date" name="hikeDate"
+            id="hikeDate" type="date" placeholder="Дата похода" [(ngModel)]="selectedDate">
+          @if (!selectedDate) {
+          <span class="search-form__placeholder">Дата похода</span>
+          }
+          <label for="hikeDate">укажите дату</label>
+        </div>
+        <div class="search-form__field">
+          <select name="participants" id="participants" [(ngModel)]="selectedParticipants">
+            <option value="" disabled hidden>Участники</option>
+            <option value="1">1 участник</option>
+            <option value="2">2 участника</option>
+            <option value="3">3 участника</option>
+          </select>
+          <label for="participants">выберите из списка</label>
+        </div>
+        <button class="search-form__button button" type="submit"
+          [disabled]="!selectedLocation || !selectedDate || !selectedParticipants">Найти программу</button>
+      </form>
+      <input class="hero__input" type="text" [(ngModel)]="inputValue">
+      <span>{{inputValue}}</span>
+    </div>
+  </section>
+
+  <section class="hike-info">
+    <div class="hike-info__container container">
+      <div class="hike-info__gallery">
+        <div class="hike-info__video-card-mountain-cabin">
+          <img class="hike-info__mountain-cabin" src="/images/mountain_cabin.png" alt="" width="350">
+          <button class="hike-info__play-button-mountain-cabin">
+            <img src="/icons/play-button.svg" alt="">
+          </button>
+        </div>
+        <div class="hike-info__video-card-mountain-peak">
+          <img class="hike-info__mountain-peak" src="/images/mountains_peak.png" alt="" width="350">
+          <button class="hike-info__play-button-mountain-peak">
+            <img src="/icons/play-button.svg" alt="">
+          </button>
+        </div>
+      </div>
+      <div class="hike-info__content">
+        <p class="hike-info__eyebrow section-eyebrow">о нашем походе</p>
+        <h2 class="hike-info__title section-title">Исследуйте все горные массивы мира вместе с нами</h2>
+        <p class="hike-info__description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть
+          более двух тысячелетий назад.
+          Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных
+          слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+        <a class="hike-info__button button" href="#" (click)="$event.preventDefault(); message.showSuccess()">Программа
+          тура</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="tour-program" class="tour-program">
+    <div class="tour-program__container container">
+      <div class="tour-program__content">
+        <div class="tour-program__container-title">
+          <p class="tour-program__eyebrow section-eyebrow">наше предложение</p>
+          <h2 class="tour-program__title section-title">Лучшие программы для тебя</h2>
+        </div>
+        <p class="tour-program__description">Его корни уходят в один фрагмент классической латыни 45 года н.э., то
+          есть
+          более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+        <div class="tour-program__advantages advantages">
+          @for(tourProgram of tourPrograms; track tourProgram.id) {
+          <div class="advantages__item">
+            <img class="advantages__icon  " [src]="tourProgram.src" alt="">
+            <div class="advantages__content">
+              <h3 class="advantages__title">{{tourProgram.title}}</h3>
+              <p class="advantages__description">{{tourProgram.description}}</p>
+            </div>
+          </div>
+          }
+        </div>
+        <a class="tour-program__button button" href="#" (click)="$event.preventDefault(); message.showInfo()">Стоимость
+          программ</a>
+      </div>
+      <div class="tour-program__gallery">
+        <img class="tour-program__image" src="/images/mountain-drink.png" alt="" width="250">
+        <img class="tour-program__image" src="/images/mountain-hiker.png" alt="" width="250">
+        <img class="tour-program__image" src="/images/snowmobile-adventure.png" alt="" width="250">
+        <img class="tour-program__image" src="/images/alpine-meadow-river.png" alt="" width="250">
+      </div>
+    </div>
+  </section>
+
+  <section id="popular-destinations" class="popular-destinations">
+    <div class="popular-destinations__container container">
+      <p class="popular-destinations__eyebrow section-eyebrow">по версии отдыхающих</p>
+      <h2 class="popular-destinations__title section-title">Популярные направления</h2>
+      <div class="popular-destinations__gallery">
+        @for(popularDestination of popularDestinations; track popularDestination.id) {
+        <div class="popular-destinations__card card"
+          [style.background-image]="'url(/images/' + popularDestination.src + ')'">
+          <div class="card__rating">
+            <div class="card__rating-wrapper">
+              <img src="/icons/star.svg" alt="">
+              <span>{{popularDestination.points | number:'1.1-1'}}</span>
+            </div>
+          </div>
+          <div class="card__info">
+            <div class="card__heading">
+              <h3 class="card__title">{{popularDestination.title}}</h3>
+              <p class="card__category">{{popularDestination.category}}</p>
+            </div>
+            <div class="card__price">
+              <span>{{popularDestination.price}}</span>
+              <span> &#36; </span>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="travel-stories" class="travel-stories">
+    <div class="travel-stories__container container">
+      <a href="" class="travel-stories__button button" (click)="$event.preventDefault(); message.showWarn()">Рейтинг
+        направлений</a>
+      <p class="travel-stories__eyebrow section-eyebrow">делимся впечатлениями</p>
+      <h2 class="travel-stories__title section-title">Блог о путешествиях</h2>
+      <div class="travel-stories__cards">
+        @for(travelStory of travelStories; track travelStory.id) {
+        <div class="travel-stories__card card">
+          <img [src]="'/images/'+travelStory.src" alt="" class="card__image">
+          <div class="card__content">
+            <h3 class="card__title">{{travelStory.title}}</h3>
+            <div class="card__body">
+              <p class="card__description">{{travelStory.description}}</p>
+              <div class="card__footer">
+                <span class="card__date">{{travelStory.date}}</span>
+                <a href="" class="card__read-more">читать статью</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="travel-blog">
+    <div class="travel-blog__container">
+      <a class="travel-blog__other-materials-button button" href="#"
+        (click)="$event.preventDefault(); message.showError()">Другие
+        материалы</a>
+      <div class="travel-blog__title-container">
+        <p class="travel-blog__eyebrow section-eyebrow">фото-отчет</p>
+        <h2 class="travel-blog__title section-title">Делимся впечатлениями</h2>
+      </div>
+      <div class="travel-blog__gallery">
+        <img src="/images/travel-photographer.png" alt="">
+        <img src="/images/travel-planning.png" alt="">
+        <img src="/images/dubai-palm-island.png" alt="">
+        <img src="/images/beach-aerial.png" alt="">
+        <img src="/images/mountain-hiking.png" alt="">
+        <img src="/images/travel-explorer.png" alt="">
+      </div>
+      <button class="travel-blog__pinterest-button button">Наш pinterest</button>
+    </div>
+  </section>
+
+</main>
