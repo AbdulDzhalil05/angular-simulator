@@ -1,0 +1,38 @@
+<div class="background">
+</div>
+<header class="header">
+  <div class="header__container container">
+    <div class="header__top">
+      <div class="header__logo">
+        <img src="/icons/logo.svg" alt="Logo">
+        <span>{{ companyName }}</span>
+      </div>
+
+      <nav class="header__navigation">
+        <ul class="header__list">
+          @for(item of navigation; track item.id) {
+          <li><a [routerLink]="item.routerLink" routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">{{item.itemName}}</a></li>
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <a class="header__button" href="">Консультация</a>
+      </div>
+    </div>
+    <div class="header__bottom">
+      @if (hasShowDate) {
+      <span>{{date}}</span>
+      } @else {
+      <div class="header__widget">
+        <button [disabled]="count === 0" (click)="decrementCount()">-</button>
+        <span class="header__count">{{count}}</span>
+        <button (click)="incrementCount()">+</button>
+      </div>
+      }
+      <button class="header__widget-button" (click)="replaceButton()">{{buttonName}}</button>
+    </div>
+
+  </div>
+</header>
