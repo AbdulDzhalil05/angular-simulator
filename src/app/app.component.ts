@@ -19,10 +19,7 @@ import { LoaderService } from '../loader.service';
 export class AppComponent {
 
   storage: LocalStorageService = inject(LocalStorageService);
-
   loader: LoaderService = inject(LoaderService);
-
-
 
   isLoaded: boolean = false;
 
@@ -42,7 +39,7 @@ export class AppComponent {
   }
 
   private saveVisitCount(): void {
-    let count = this.storage.getItemLocalStorage<string, number>('visitCount') || 0;
+    let count: number = this.storage.getItemLocalStorage<string, number>('visitCount') || 0;
     this.storage.setItemLocalStorage('visitCount', ++count);
 
   }

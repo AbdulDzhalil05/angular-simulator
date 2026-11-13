@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IMessage } from './interfaces/IMessage';
 import { Message } from './enums/Message';
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,38 +9,37 @@ import { BehaviorSubject, map } from 'rxjs';
 export class MessageService {
 
   private _messageSubject$: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
-  messages$ = this._messageSubject$.asObservable();
+  messages$: Observable<IMessage[]> = this._messageSubject$.asObservable();
 
-  showSuccess() {
+  showSuccess(): void {
     this.addMessage(Message.success, 'Данные успешно сохранены!');
   }
 
-  showError() {
+  showError(): void {
     this.addMessage(Message.error, 'Не удалось сохранить данные.');
   }
 
-  showWarn() {
+  showWarn(): void {
     this.addMessage(Message.warn, 'Проверьте введённые данные.');
   }
 
-  showInfo() {
+  showInfo(): void {
     this.addMessage(Message.info, 'У вас есть новые уведомления.');
   }
 
-  showHttpError() {
+  showHttpError(): void {
     this.addMessage(Message.info, 'Ошибка загрузки данных с сервера');
   }
 
   closeMessage(id: number): void {
-    // this._messages = this._messages.filter(message => message.id !== id);
     this._messageSubject$.next(
-      this._messageSubject$.value.filter(message => message.id !== id)
+      this._messageSubject$.value.filter((message: IMessage) => message.id !== id)
     );
   }
 
   private addMessage(type: Message, text: string): void {
 
-    const id = Date.now();
+    const id: number = Date.now();
 
     const message: IMessage = {
       id,

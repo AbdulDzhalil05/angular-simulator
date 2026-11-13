@@ -14,5 +14,5 @@ import { AsyncPipe } from '@angular/common';
 export class MessageComponent {
   message: MessageService = inject(MessageService);
 
-  Message = Message;
+  Message: typeof Message = Message;
 }

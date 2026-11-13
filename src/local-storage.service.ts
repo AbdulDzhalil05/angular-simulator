@@ -9,7 +9,7 @@ export class LocalStorageService {
   }
 
   getItemLocalStorage<K, T>(key: K): T {
-    const data = localStorage.getItem(String(key));
+    const data: string | null = localStorage.getItem(String(key));
     return JSON.parse(data!);
   }
 
@@ -17,7 +17,7 @@ export class LocalStorageService {
     localStorage.removeItem(String(key));
   }
 
-  clearLocalStorage() {
+  clearLocalStorage(): void {
     localStorage.clear();
   }
 }

@@ -15,7 +15,7 @@ export class LoaderComponent {
 
   constructor() {
     this.loader.loader$.pipe(
-      tap((value) => {
+      tap((value: boolean) => {
         if (value) {
           document.body.style.overflow = 'hidden';
         } else {

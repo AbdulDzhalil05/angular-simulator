@@ -27,8 +27,8 @@ export class Collection<T> {
   }
 }
 
-let products = ['apple', 'tomato', 'limone'];
-let numbers = [12, 15, 60];
+let products: string[] = ['apple', 'tomato', 'limone'];
+let numbers: number[] = [12, 15, 60];
 
-const collectionProducts = new Collection(products);
-const collectionNumber = new Collection(numbers);
+const collectionProducts: Collection<string> = new Collection(products);
+const collectionNumber: Collection<number> = new Collection(numbers);

@@ -86,7 +86,7 @@ function removeChar(text: string, char: string): string {
 }
 
 function filterUsers(users: IAdmin[], age: number): IAdmin[] {
-  return users.filter(user => user.age > age);
+  return users.filter((user: IAdmin) => user.age > age);
 }
 
 console.log(filterUsers(users, 30));
