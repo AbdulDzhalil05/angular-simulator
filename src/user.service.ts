@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { UserApiService } from './user-api.service';
-import { BehaviorSubject, tap, catchError, finalize, of } from 'rxjs';
+import { BehaviorSubject, tap, catchError, finalize, of, Observable } from 'rxjs';
 import { IUser } from './interfaces/IUser';
 import { LoaderService } from './loader.service';
 import { MessageService } from './message.service';
@@ -15,16 +15,16 @@ export class UserService {
   message: MessageService = inject(MessageService);
 
 
-  private _usersSubject$ = new BehaviorSubject<IUser[]>([]);
-  users$ = this._usersSubject$.asObservable();
+  private _usersSubject$: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
+  users$: Observable<IUser[]> = this._usersSubject$.asObservable();
   private isLoading: boolean = false;
 
-  loadUsers() {
+  loadUsers(): void {
     if (this._usersSubject$.value.length === 0 && this.isLoading === false) {
       this.isLoading = true;
       this.loader.showLoader();
       this.usersApi.getUsers().pipe(
-        tap(users => {
+        tap((users: IUser[]) => {
           this.setUsers(users);
         }),
 
@@ -41,11 +41,11 @@ export class UserService {
     }
   }
 
-  setUsers(value: IUser[]) {
+  setUsers(value: IUser[]): void {
     this._usersSubject$.next(value);
   }
 
-  getUsers() {
+  getUsers(): Observable<IUser[]> {
     return this.users$;
   }
 
