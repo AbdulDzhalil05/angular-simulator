@@ -21,7 +21,7 @@ export class HomePageComponent {
 
   message: MessageService = inject(MessageService);
 
-  Message = Message;
+  Message: typeof Message = Message;
   selectedLocation: string = '';
   selectedDate: string = '';
   selectedParticipants: string = '';
