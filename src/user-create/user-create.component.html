@@ -1,0 +1,86 @@
+<div class="modal">
+  <form class="form" [formGroup]="createForm">
+    <h1 class="form__title">Создание пользователя</h1>
+
+    <div class="form__item">
+      <label for="name">Имя</label>
+      <input id="name" formControlName="name" type="text">
+    </div>
+
+    <div class="form__item">
+      <label for="username">Логин</label>
+      <input id="username" formControlName="username" type="text">
+    </div>
+
+    <div class="form__item">
+      <label for="email">Email</label>
+      <input id="email" formControlName="email" type="email">
+    </div>
+
+    <ng-container formGroupName="address">
+      <div class="form__item">
+        <label for="street">Улица</label>
+        <input id="street" formControlName="street" type="text">
+      </div>
+
+      <div class="form__item">
+        <label for="suite">Номер квартиры</label>
+        <input id="suite" formControlName="suite" type="text">
+      </div>
+
+      <div class="form__item">
+        <label for="city">Город</label>
+        <input id="city" formControlName="city" type="text">
+      </div>
+
+      <div class="form__item">
+        <label for="zipcode">Индекс</label>
+        <input id="zipcode" formControlName="zipcode" type="text">
+      </div>
+
+      <ng-container formGroupName="geo">
+        <div class="form__item">
+          <label for="lat">Широта</label>
+          <input id="lat" formControlName="lat" type="text">
+        </div>
+
+        <div class="form__item">
+          <label for="lng">Долгота</label>
+          <input id="lng" formControlName="lng" type="text">
+        </div>
+      </ng-container>
+
+    </ng-container>
+
+    <div class="form__item">
+      <label for="phone">Телефон</label>
+      <input id="phone" formControlName="phone" type="tel">
+    </div>
+
+    <div class="form__item">
+      <label for="website">Вебсайт</label>
+      <input id="website" formControlName="website" type="url">
+    </div>
+
+    <ng-container formGroupName="company">
+      <div class="form__item">
+        <label for="companyName">Название компании</label>
+        <input id="companyName" formControlName="name" type="text">
+      </div>
+
+      <div class="form__item">
+        <label for="catchPhrase">Слоган</label>
+        <input id="catchPhrase" formControlName="catchPhrase" type="text">
+      </div>
+
+      <div class="form__item">
+        <label for="bs">Сфера деятельности</label>
+        <input id="bs" formControlName="bs" type="text">
+      </div>
+    </ng-container>
+  </form>
+  <div class="button">
+    <button class="create-user" type="button" (click)="createUser()" [disabled]="createForm.invalid">Создать</button>
+    <button class="close-modal" type="button" (click)="closeModal()">Закрыть</button>
+  </div>
+</div>
