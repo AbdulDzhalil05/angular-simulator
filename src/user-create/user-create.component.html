@@ -1,0 +1,100 @@
+<div class="modal">
+  <form class="form" [formGroup]="createForm">
+    <h1 class="form__title">Создание пользователя</h1>
+
+    <div class="form__item">
+      <label for="create-user-name">Имя</label>
+      <input id="create-user-name" formControlName="name" type="text" />
+    </div>
+
+    <div class="form__item">
+      <label for="create-user-username">Логин</label>
+      <input id="create-user-username" formControlName="username" type="text" />
+    </div>
+
+    <div class="form__item">
+      <label for="create-user-email">Email</label>
+      <input id="create-user-email" formControlName="email" type="email" />
+    </div>
+
+    <ng-container formGroupName="address">
+      <div class="form__item">
+        <label for="create-user-street">Улица</label>
+        <input id="create-user-street" formControlName="street" type="text" />
+      </div>
+
+      <div class="form__item">
+        <label for="create-user-suite">Номер квартиры</label>
+        <input id="create-user-suite" formControlName="suite" type="text" />
+      </div>
+
+      <div class="form__item">
+        <label for="create-user-city">Город</label>
+        <input id="create-user-city" formControlName="city" type="text" />
+      </div>
+
+      <div class="form__item">
+        <label for="create-user-zipcode">Индекс</label>
+        <input id="create-user-zipcode" formControlName="zipcode" type="text" />
+      </div>
+
+      <ng-container formGroupName="geo">
+        <div class="form__item">
+          <label for="create-user-latitude">Широта</label>
+          <input id="create-user-latitude" formControlName="lat" type="text" />
+        </div>
+
+        <div class="form__item">
+          <label for="create-user-longitude">Долгота</label>
+          <input id="create-user-longitude" formControlName="lng" type="text" />
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <div class="form__item">
+      <label for="create-user-phone">Телефон</label>
+      <input id="create-user-phone" formControlName="phone" type="tel" />
+    </div>
+
+    <div class="form__item">
+      <label for="create-user-website">Вебсайт</label>
+      <input id="create-user-website" formControlName="website" type="url" />
+    </div>
+
+    <ng-container formGroupName="company">
+      <div class="form__item">
+        <label for="create-user-company-name">Название компании</label>
+        <input id="create-user-company-name" formControlName="name" type="text" />
+      </div>
+
+      <div class="form__item">
+        <label for="create-user-catch-phrase">Слоган</label>
+        <input id="create-user-catch-phrase" formControlName="catchPhrase" type="text" />
+      </div>
+
+      <div class="form__item">
+        <label for="create-user-company-business">Сфера деятельности</label>
+        <input id="create-user-company-business" formControlName="bs" type="text" />
+      </div>
+    </ng-container>
+  </form>
+  <div class="button">
+    <button
+      id="create-user-submit-button"
+      class="create-user"
+      type="button"
+      (click)="createUser()"
+      [disabled]="createForm.invalid"
+    >
+      Создать
+    </button>
+    <button
+      id="close-create-user-modal-button"
+      class="close-modal"
+      type="button"
+      (click)="closeModal()"
+    >
+      Закрыть
+    </button>
+  </div>
+</div>
