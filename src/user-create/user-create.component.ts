@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators, NonNullableFormBuilder } from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
+import { FormControls } from '../types/form-controls.type';
 
 @Component({
   selector: 'app-user-create',
@@ -13,9 +14,9 @@ export class UserCreateComponent {
   @Output() closeRequested: EventEmitter<void> = new EventEmitter<void>();
   @Output() createRequested: EventEmitter<IUser> = new EventEmitter<IUser>();
 
-  private fb: FormBuilder = inject(FormBuilder);
+  private fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
 
-  createForm: FormGroup = this.fb.group({
+  createForm: FormGroup<FormControls<Omit<IUser, 'id'>>> = this.fb.group({
     name: ['', [Validators.required]],
     username: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],

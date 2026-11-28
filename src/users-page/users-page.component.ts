@@ -22,7 +22,6 @@ export class UsersPageComponent {
     map(([users, search]) => users.filter(user => user.name.trim().toLowerCase().includes(search)))
   );
 
-  id!: number;
   isModalOpen: boolean = false;
 
   constructor() {

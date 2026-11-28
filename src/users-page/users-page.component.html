@@ -3,20 +3,22 @@
     <h1 class="users__title">Список Пользователей</h1>
     <div class="users__panel">
       <app-users-filter (filterDate)="onFilterDate($event)" />
-      <button type="button" class="users__button-create" (click)="openModalForm()">Создать пользователя</button>
+      <button type="button" class="users__button-create" (click)="openModalForm()">
+        Создать пользователя
+      </button>
     </div>
     <div class="users__cards">
-      @for(user of (filteredUsers$ | async); track user.id) {
-      <app-user-card [user]="user" (deleteRequested)="deleteUser(id = $event)" />
+      @for (user of filteredUsers$ | async; track user.id) {
+        <app-user-card [user]="user" (deleteRequested)="deleteUser($event)" />
       } @empty {
-      <div class="users__empty">Нет пользователей для отображения</div>
+        <div class="users__empty">Нет пользователей для отображения</div>
       }
     </div>
   </div>
 </section>
 
 @if (isModalOpen) {
-<div class="overlay">
-  <app-user-create (closeRequested)="closeModal()" (createRequested)="createUser($event)" />
-</div>
+  <div class="overlay">
+    <app-user-create (closeRequested)="closeModal()" (createRequested)="createUser($event)" />
+  </div>
 }
