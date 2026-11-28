@@ -1,8 +1,7 @@
 <div class="users__card card">
-
   <div class="card__header">
-    <h2 class="card__name">{{user.name}}</h2>
-    <span class="card__user-name">{{user.username}}</span>
+    <h2 class="card__name">{{ user.name }}</h2>
+    <span class="card__user-name">{{ user.username }}</span>
   </div>
 
   <div class="card__content">
@@ -11,15 +10,15 @@
       <div class="card__contact-body">
         <dl class="card__contact-email">
           <dt>Эл. почта:</dt>
-          <dd>{{user.email}}</dd>
+          <dd>{{ user.email }}</dd>
         </dl>
         <dl class="card__contact-phone">
           <dt>Телефон:</dt>
-          <dd>{{user.phone || 'Неизвестно'}}</dd>
+          <dd>{{ user.phone || 'Неизвестно' }}</dd>
         </dl>
         <dl class="card__contact-site">
           <dt>Веб-сайт:</dt>
-          <dd>{{user.website || 'Неизвестно'}}</dd>
+          <dd>{{ user.website || 'Неизвестно' }}</dd>
         </dl>
       </div>
     </div>
@@ -29,25 +28,25 @@
       <div class="card__address-body">
         <dl class="card__address-city">
           <dt>Город:</dt>
-          <dd>{{user.address.city || 'Неизвестно'}}</dd>
+          <dd>{{ user.address.city || 'Неизвестно' }}</dd>
         </dl>
         <dl class="card__address-street">
           <dt>Улица:</dt>
-          <dd>{{user.address.street || 'Неизвестно'}}</dd>
+          <dd>{{ user.address.street || 'Неизвестно' }}</dd>
         </dl>
         <dl class="card__address-office">
           <dt>Офис:</dt>
-          <dd>{{user.address.suite || 'Неизвестно'}}</dd>
+          <dd>{{ user.address.suite || 'Неизвестно' }}</dd>
         </dl>
         <dl class="card__address-zipcode">
           <dt>Индекс:</dt>
-          <dd>{{user.address.zipcode || 'Неизвестно'}}</dd>
+          <dd>{{ user.address.zipcode || 'Неизвестно' }}</dd>
         </dl>
         <dl class="card__address-geo">
           <dt>Координаты:</dt>
           <dd>
-            <span>{{user.address.geo.lat || 'Неизвестно'}}</span>
-            <span>{{user.address.geo.lng || 'Неизвестно'}}</span>
+            <span>{{ user.address.geo.lat || 'Неизвестно' }}</span>
+            <span>{{ user.address.geo.lng || 'Неизвестно' }}</span>
           </dd>
         </dl>
       </div>
@@ -58,22 +57,23 @@
       <div class="card__workplace-body">
         <dl class="card__workplace-email">
           <dt>Компания:</dt>
-          <dd>{{user.company.name || 'Неизвестно'}}</dd>
+          <dd>{{ user.company.name || 'Неизвестно' }}</dd>
         </dl>
         <dl class="card__workplace-phone">
           <dt>Миссия:</dt>
-          <dd>{{user.company.catchPhrase || 'Неизвестно'}}</dd>
+          <dd>{{ user.company.catchPhrase || 'Неизвестно' }}</dd>
         </dl>
         <dl class="card__workplace-bs">
           <dt>Специализация:</dt>
-          <dd>{{user.company.bs || 'Неизвестно'}}</dd>
+          <dd>{{ user.company.bs || 'Неизвестно' }}</dd>
         </dl>
       </div>
     </div>
   </div>
 
   <div class="card__button">
-    <button type="button" (click)="deleteUser()">удалить</button>
+    <button [id]="'delete-user-button-' + user.id" type="button" (click)="deleteUser()">
+      удалить
+    </button>
   </div>
-
 </div>

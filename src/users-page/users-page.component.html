@@ -3,7 +3,12 @@
     <h1 class="users__title">Список Пользователей</h1>
     <div class="users__panel">
       <app-users-filter (filterDate)="onFilterDate($event)" />
-      <button type="button" class="users__button-create" (click)="openModalForm()">
+      <button
+        id="open-create-user-modal-button"
+        type="button"
+        class="users__button-create"
+        (click)="openModalForm()"
+      >
         Создать пользователя
       </button>
     </div>
